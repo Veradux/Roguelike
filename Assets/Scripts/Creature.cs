@@ -13,18 +13,15 @@ public class Creature : MonoBehaviour {
     // TODO: make this fucking event work!
     public event Action OnCalculatedStatsChanged;
     public event Action OnLiquidStatsChanged;
-
     public event Action OnCreatureActionInvoked;
     #endregion
 
-    public List<Ability> abilities = new();
-    public List<CreatureAction> creatureActions = new();
-
     [SerializeField] private AssetManager assetManager;
 
-    [Header("Parameters")] public Vector2 movementDirection = Vector2.zero;
+    public List<Ability> abilities = new();
+    public List<CreatureAction> actions = new();
 
-
+    [Header("Stats")] public Vector2 movementDirection = Vector2.zero;
     [SerializeField] public float movementSpeed = 4f;
     [SerializeField] private float health;
     [SerializeField] private Stat maxHealth;
@@ -43,10 +40,10 @@ public class Creature : MonoBehaviour {
         // We copy actions so that each run has a brand new fresh copy.
         // Using the original will create problems with referencing destroyed objects
         // by restarting the game in the editor
-        creatureActions.Add(assetManager.playerActionsAssets[0]);
-        creatureActions.Add(assetManager.playerActionsAssets[0]);
+        actions.Add(assetManager.playerActionsAssets[0]);
+        actions.Add(assetManager.playerActionsAssets[0]);
 
-        creatureActions.ForEach(x => x.RegisterDependencies(this));
+        actions.ForEach(x => x.RegisterDependencies(this));
 
         AddAbility<EchoAbility>();
         AddAbility<EchoAbility>();
@@ -71,7 +68,7 @@ public class Creature : MonoBehaviour {
     public void UseCreatureAction(int actionIndex) {
         OnCreatureActionInvoked?.Invoke();
 
-        creatureActions[actionIndex]
+        actions[actionIndex]
             ?.Invoke();
     }
 

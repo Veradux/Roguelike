@@ -24,8 +24,7 @@ namespace Actions {
         [SerializeField] private float cooldown = 1f;
         private bool isOnCooldown;
 
-        public CreatureActionType ActionType { get; set; }
-
+        public CreatureActionType type;
         protected Creature Creature;
 
         public void RegisterDependencies(Creature creature) {

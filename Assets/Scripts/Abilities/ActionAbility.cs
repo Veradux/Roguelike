@@ -5,15 +5,15 @@ using UnityEngine;
 
 namespace Abilities {
 
+    /**
+     * ActionAbility is an effect triggered by a creature's actions.
+     */
     public abstract class ActionAbility : Ability {
 
         [SerializeField] private CreatureActionType actionType;
 
         protected IEnumerable<CreatureAction> AffectedActions {
-            get {
-                return Creature.creatureActions.Where(creatureAction =>
-                    (creatureAction.ActionType & actionType) == creatureAction.ActionType);
-            }
+            get { return Creature.actions.Where(action => (action.type & actionType) == action.type); }
         }
 
     }

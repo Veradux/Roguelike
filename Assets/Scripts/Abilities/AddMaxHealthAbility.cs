@@ -7,8 +7,8 @@ namespace Abilities {
         [SerializeField] private float additionalMaxHealth = 10f;
 
         public override void RegisterEventHandlers() {
-            Creature.MaxHealth.CalculateStatHandlers.Add(new PlayerCalculateStatHandler() {
-                Order = 1,
+            Creature.MaxHealth.CalculateStatHandlers.Add(new PlayerCalculateStatHandler {
+                CalculationType = CalculationType.Addition,
                 HandleStatCalculation = StatsOnOnPlayerCalculateHealth
             });
         }

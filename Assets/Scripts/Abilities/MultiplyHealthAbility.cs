@@ -8,7 +8,7 @@ namespace Abilities {
 
         public override void RegisterEventHandlers() {
             Creature.MaxHealth.CalculateStatHandlers.Add(new PlayerCalculateStatHandler() {
-                Order = 2,
+                CalculationType = CalculationType.Multiplication,
                 HandleStatCalculation = StatsOnOnPlayerCalculateHealth
             });
         }

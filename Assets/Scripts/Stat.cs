@@ -3,18 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stats", menuName = "ScriptableObjects/Stats", order = 1)]
-public class Stats : ScriptableObject {
-
-    #region Events
-    public event Action OnStatsChanged;
-    #endregion
-
-    public Stat maxHealth;
-    public Stat damage;
-
-}
-
 [Serializable]
 public class Stat {
 
@@ -22,31 +10,29 @@ public class Stat {
     public event Action OnStatChanged;
     #endregion
 
-    [SerializeField] private float baseValue = 10f;
-
     public List<PlayerCalculateStatHandler> CalculateStatHandlers = new();
 
-    private bool outdated = true;
-
+    [SerializeField] private float baseValue = 10f;
+    private bool isOutdated = true;
     private float value;
 
     public float Value {
         get {
-            if (outdated) {
+            if (isOutdated) {
                 value = CalculateStat();
-                outdated = false;
+                isOutdated = false;
             }
 
             return value;
         }
     }
 
-    public void SetOutdated() => outdated = true;
+    public void SetOutdated() => isOutdated = true;
 
     private float CalculateStat() {
         var calculatedHealth = baseValue;
 
-        foreach (var handler in CalculateStatHandlers.OrderBy(handler => handler.Order)) {
+        foreach (var handler in CalculateStatHandlers.OrderBy(handler => handler.CalculationType)) {
             // Apply modification
             calculatedHealth = handler.HandleStatCalculation(calculatedHealth);
         }
@@ -56,10 +42,20 @@ public class Stat {
 
 }
 
-
 public class PlayerCalculateStatHandler {
 
-    public int Order { get; set; }
+    public CalculationType CalculationType { get; set; }
     public Func<float, float> HandleStatCalculation { get; set; }
+
+}
+
+/**
+ * CalculationType is used to change the order of calculations when doing the math for stats.
+ * For example, all additions and subtractions to the stat should be done first, then all multiplications and divisions. 
+ */
+public enum CalculationType {
+
+    Addition = 0,
+    Multiplication = 1
 
 }

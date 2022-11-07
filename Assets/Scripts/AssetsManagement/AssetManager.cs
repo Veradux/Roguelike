@@ -21,10 +21,9 @@ namespace AssetsManagement {
         IList<CreatureAction> IAssetManager<CreatureAction>.Assets => playerActionsAssets;
 
         private void Awake() {
-            abilityAssets = abilityAssets.Select(x => Instantiate(x))
+            abilityAssets = abilityAssets.Select(Instantiate)
                                          .ToList();
-
-            playerActionsAssets = playerActionsAssets.Select(x => Instantiate(x))
+            playerActionsAssets = playerActionsAssets.Select(Instantiate)
                                                      .ToList();
         }
 
