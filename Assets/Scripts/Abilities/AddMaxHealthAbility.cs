@@ -6,21 +6,10 @@ namespace Abilities {
 
         [SerializeField] private float additionalMaxHealth = 10f;
 
-        public override void RegisterEventHandlers() {
-            Creature.MaxHealth.CalculateStatHandlers.Add(new PlayerCalculateStatHandler {
-                CalculationType = CalculationType.Addition,
-                HandleStatCalculation = StatsOnOnPlayerCalculateHealth
-            });
-        }
-
-        private float StatsOnOnPlayerCalculateHealth(float health) {
-            return health + additionalMaxHealth * Stacks;
-        }
-
         public override void OnAdded() {
             base.OnAdded();
 
-            Creature.MaxHealth.SetOutdated();
+            AddModifier<AdditionModifier>(Creature.MaxHealth, additionalMaxHealth);
         }
 
     }

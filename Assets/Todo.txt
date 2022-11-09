@@ -1,0 +1,2 @@
+﻿TODO: look into localization of the game https://docs.unity3d.com/Packages/com.unity.localization@1.0/manual/QuickStartGuideWithVariants.html
+TODO: make cards, cards selection screen

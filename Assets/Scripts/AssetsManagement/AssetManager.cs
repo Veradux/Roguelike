@@ -21,6 +21,9 @@ namespace AssetsManagement {
         IList<CreatureAction> IAssetManager<CreatureAction>.Assets => playerActionsAssets;
 
         private void Awake() {
+            // We copy assets so that each run has a brand new fresh copy.
+            // Using the original will create problems with referencing destroyed objects,
+            // by restarting the game in the editor.
             abilityAssets = abilityAssets.Select(Instantiate)
                                          .ToList();
             playerActionsAssets = playerActionsAssets.Select(Instantiate)

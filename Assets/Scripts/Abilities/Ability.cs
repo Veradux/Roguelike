@@ -12,9 +12,17 @@ namespace Abilities {
             Creature = creature;
         }
 
-        public abstract void RegisterEventHandlers();
+        public virtual void RegisterEventHandlers() { }
 
         public virtual void OnAdded() { }
+
+        protected void AddModifier<TModifier>(Stat stat, float modifierValue) where TModifier : Modifier, new() {
+            new TModifier().RegisterDependencies(stat)
+                           .SetModifierValue(modifierValue)
+                           .RegisterEventHandlers();
+
+            stat.SetOutdated();
+        }
 
     }
 
