@@ -11,7 +11,7 @@ public class Creature : MonoBehaviour {
     #region Events
     // TODO: make this fucking event work!
     public event Action OnCalculatedStatsChanged;
-    public event Action OnLiquidStatsChanged;
+    public event Action OnHealthChanged;
     public event Action OnCreatureActionInvoked;
     #endregion
 
@@ -31,11 +31,11 @@ public class Creature : MonoBehaviour {
         get => health;
         set {
             health = value;
-            OnLiquidStatsChanged?.Invoke();
+            OnHealthChanged?.Invoke();
         }
     }
 
-    private void Start() {
+    private void Awake() {
         // We copy actions so that each run has a brand new fresh copy.
         // Using the original will create problems with referencing destroyed objects
         // by restarting the game in the editor
