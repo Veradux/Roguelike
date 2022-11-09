@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2d919d49994a12826a4bddf539ac16, type: 3}
   m_Name: EchoAbility
   m_EditorClassIdentifier: 
-  actionType: -1
+  actionType: 1
   delay: 0.5

@@ -27,7 +27,10 @@ public class Stat {
         }
     }
 
-    public void SetOutdated() => isOutdated = true;
+    public void SetOutdated() {
+        isOutdated = true;
+        OnStatChanged?.Invoke();
+    }
 
     private float CalculateStat() {
         var calculatedHealth = baseValue;

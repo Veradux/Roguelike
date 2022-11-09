@@ -9,9 +9,6 @@ namespace Abilities {
         public float delay = 0.5f;
 
         public override void RegisterEventHandlers() {
-            if (Creature.actions.Count < 2)
-                return;
-
             foreach (var creatureAction in AffectedActions) {
                 creatureAction.OnActionInvoked += OnUtilityActionHandler;
             }

@@ -6,7 +6,6 @@ using Actions;
 using AssetsManagement;
 using UnityEngine;
 
-// TODO: FOR SOME REASON ECHOS IS FASTER THAN FIRST DASH, I GUESS MAYBE ECHO CALLS IT MULTIPLE TIMES OR SOMETHING XD
 public class Creature : MonoBehaviour {
 
     #region Events
@@ -41,12 +40,14 @@ public class Creature : MonoBehaviour {
         // Using the original will create problems with referencing destroyed objects
         // by restarting the game in the editor
         actions.Add(assetManager.playerActionsAssets[0]);
-        actions.Add(assetManager.playerActionsAssets[0]);
 
         actions.ForEach(x => x.RegisterDependencies(this));
 
         AddAbility<EchoAbility>();
         AddAbility<EchoAbility>();
+        AddAbility<EchoAbility>();
+
+        maxHealth.OnStatChanged += () => OnCalculatedStatsChanged?.Invoke();
     }
 
     private void AddAbility<T>() where T : Ability {

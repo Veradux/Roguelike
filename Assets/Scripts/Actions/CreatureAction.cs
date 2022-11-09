@@ -55,6 +55,7 @@ namespace Actions {
         }
 
         public void ForceInvoke() {
+            Debug.Log("XD");
             Act();
         }
 

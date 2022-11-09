@@ -640,7 +640,19 @@ MonoBehaviour:
     m_ActionId: ef225c00-5595-4960-b841-1422efadb4ca
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2024478909}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPrimaryAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ee71a253-069a-4170-b6d0-1278ccc94e95
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -935,9 +947,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0e2dd431844d0bb44b8e707081b5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilities: []
-  creatureActions: []
   assetManager: {fileID: 1561425357}
+  abilities: []
+  actions: []
   movementDirection: {x: 0, y: 0}
   movementSpeed: 4
   health: 10
